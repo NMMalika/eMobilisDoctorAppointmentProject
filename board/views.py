@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from django.http import HttpResponse
+from django.core.mail import EmailMessage
+from django.conf import settings
 
 # Create your views here.
 def home(request):
@@ -10,7 +13,17 @@ def appointment(request):
 
 
 def contact(request):
-    return render(request, "contact.html")
+    if request.method == "POST":
+        your_name = request.POST["your_name"]
+        your_email = request.POST["your_email"]
+        subject = request.POST["subject"]
+        message = request.POST["message"]
+
+        return render(request, "contact.html", {"your_name": your_name, "your_email": your_email, "subject": subject, "message": message})
+
+    else:
+          return render(request, "contact.html")
+
 
 
 def price(request):

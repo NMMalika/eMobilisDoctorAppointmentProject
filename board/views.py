@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, send_mail
 from django.conf import settings
 
 # Create your views here.
@@ -28,6 +28,8 @@ def contact(request):
         your_email = request.POST["your_email"]
         subject = request.POST["subject"]
         message = request.POST["message"]
+
+
 
         return render(request, "contact.html", {"your_name": your_name, "your_email": your_email, "subject": subject, "message": message})
 

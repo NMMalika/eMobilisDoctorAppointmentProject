@@ -9,7 +9,17 @@ def home(request):
 def about(request):
     return render(request, "about.html")
 def appointment(request):
-    return render(request, "appointment.html")
+    if request.method == "POST":
+        name = request.POST["your_name"]
+        email = request.POST["your_email"]
+    
+
+        return render(request, "contact.html",
+                      {"your_name": your_name, "your_email": your_email, "subject": subject, "message": message})
+
+    else:
+
+       return render(request, "appointment.html")
 
 
 def contact(request):

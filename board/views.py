@@ -1,7 +1,12 @@
+from django.core.checks import messages
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.core.mail import EmailMessage, send_mail
+from django.core.mail import EmailMessage, send_mail, message
 from django.conf import settings
+from django.contrib import messages
+
+from board.models import Doctor
+
 
 # Create your views here.
 def home(request):
@@ -9,17 +14,20 @@ def home(request):
 def about(request):
     return render(request, "about.html")
 def appointment(request):
+
+    doctor = Doctor.objects.all()
     if request.method == "POST":
-        name = request.POST["your_name"]
-        email = request.POST["your_email"]
-    
+        department = request.POST["department"]
+        doctor = request.POST["doctor"]
+        name = request.POST["name"]
+        email = request.POST["email"]
+        date = request.POST["date"]
+        time = request.POST["time"]
 
-        return render(request, "contact.html",
-                      {"your_name": your_name, "your_email": your_email, "subject": subject, "message": message})
-
+        messages.add_message(request, messages.SUCCESS,f"{message}")
     else:
 
-       return render(request, "appointment.html")
+         return render(request, "appointment.html",{"doctor":doctor})
 
 
 def contact(request):

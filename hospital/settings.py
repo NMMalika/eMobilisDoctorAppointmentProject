@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django_daraja",
-    "board"
+    "board",
 ]
 
 MIDDLEWARE = [
@@ -82,6 +81,10 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
+        "USER":"root",
+        "PASSWORD":"",
+        "HOST":"localhost",
+        "PORT":"3306",
     }
 }
 
@@ -136,9 +139,8 @@ EMAIL_USE_TLS = True
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MESSAGE_TAGS ={
-    messages.DEGUG:'alert-info',
+    messages.DEBUG:'alert-info',
     messages.INFO:'alert-info',
-    messages.SUCCESS:'alert-success',
     messages.WARNING:'alert-warning',
     messages.ERROR:'alert-danger',
 }
